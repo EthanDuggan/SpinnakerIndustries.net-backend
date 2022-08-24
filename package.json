@@ -1,0 +1,19 @@
+{
+  "name": "spinnakerindustries.net-backend",
+  "version": "1.0.0",
+  "description": "Backend server for SpinnakerIndustires.net internal site",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/EthanDuggan/SpinnakerIndustries.net-backend.git"
+  },
+  "author": "Ethan Keith Israel Duggan",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/EthanDuggan/SpinnakerIndustries.net-backend/issues"
+  },
+  "homepage": "https://github.com/EthanDuggan/SpinnakerIndustries.net-backend#readme"
+}
