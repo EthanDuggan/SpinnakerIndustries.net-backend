@@ -1,5 +1,6 @@
 const XLSX = require('xlsx');
 
+// load the "Installation Instructins" and "Wiring Diagrams" from "//horton/reference/Eng Product Log.xls" and convert them into arrays of JSON objects, where each JSON object in the array represents a row of data
 let engProductLog_xls = XLSX.readFile('//horton/reference/Eng Product Log.xls');
 let installationInstructions = XLSX.utils.sheet_to_json(engProductLog_xls.Sheets['Installation Instructions']);
 let wiringDiagrams = XLSX.utils.sheet_to_json(engProductLog_xls.Sheets['Wiring Diagrams']);
