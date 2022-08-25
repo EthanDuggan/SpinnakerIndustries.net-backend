@@ -1,18 +1,23 @@
 const express = require('express');
+const cors = require('cors');
 const XLSX = require('xlsx');
+
+const PORT = 8081;
+const frontEndOrigin = 'http://localhost:8080'; 
 
 let appData = loadData();
 console.log(appData.installationInstructions); // testing purposes
 
 // create server for serving the api
 const app = express();
+app.use(cors({origin: frontEndOrigin})); // adds a Cross-origin Resource Sharing (CORS) policy middleware that allows the spinnakerindustries.net front-end to make http requests to this server
 app.use(express.json()); // parses all incoming HTTP request bodies into JSON objects (by default they are just treated as strings)
 
 // routes
 app.get('/WiringDiagrams', (req, res) => {res.status(200).send(appData.wiringDiagrams);});
 app.get('/InstallationInstructions', (req, res) => {res.status(200).send(appData.installationInstructions);});
 
-app.listen(8080, () => console.log('app available at port 8080'));
+app.listen(PORT, () => console.log(`app available at port ${PORT}`));
 
 function loadData() {
     let data = {}
