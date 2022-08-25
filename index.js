@@ -1,15 +1,23 @@
 const XLSX = require('xlsx');
 
-// load the "Installation Instructins" and "Wiring Diagrams" from "//horton/reference/Eng Product Log.xls" and convert them into arrays of JSON objects, where each JSON object in the array represents a row of data
-let engProductLog_xls = XLSX.readFile('//horton/reference/Eng Product Log.xls');
-let installationInstructions = XLSX.utils.sheet_to_json(engProductLog_xls.Sheets['Installation Instructions']);
-let wiringDiagrams = XLSX.utils.sheet_to_json(engProductLog_xls.Sheets['Wiring Diagrams']);
-
-console.log(installationInstructions);
+let appData = loadData();
+console.log(appData.installationInstructions); // testing purposes
 
 // create server for serving the api
 const express = require('express');
 
 const app = express();
+app.use(express.json()); // parses all incoming HTTP request bodies into JSON objects (by default they are just treated as strings)
 
 //app.listen(process.env.PORT || 8080, () => console.log('app available at port 8080'));
+
+function loadData() {
+    let data = {}
+
+    // load the "Installation Instructins" and "Wiring Diagrams" from "//horton/reference/Eng Product Log.xls" and convert them into arrays of JSON objects, where each JSON object in the array represents a row of data
+    let engProductLog_xls = XLSX.readFile('//horton/reference/Eng Product Log.xls');
+    data.installationInstructions = XLSX.utils.sheet_to_json(engProductLog_xls.Sheets['Installation Instructions']);
+    data.wiringDiagrams = XLSX.utils.sheet_to_json(engProductLog_xls.Sheets['Wiring Diagrams']);
+
+    return data;
+}
