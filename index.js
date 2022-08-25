@@ -1,15 +1,18 @@
+const express = require('express');
 const XLSX = require('xlsx');
 
 let appData = loadData();
 console.log(appData.installationInstructions); // testing purposes
 
 // create server for serving the api
-const express = require('express');
-
 const app = express();
 app.use(express.json()); // parses all incoming HTTP request bodies into JSON objects (by default they are just treated as strings)
 
-//app.listen(process.env.PORT || 8080, () => console.log('app available at port 8080'));
+// routes
+app.get('/WiringDiagrams', (req, res) => {res.status(200).send(appData.wiringDiagrams);});
+app.get('/InstallationInstructions', (req, res) => {res.status(200).send(appData.installationInstructions);});
+
+app.listen(8080, () => console.log('app available at port 8080'));
 
 function loadData() {
     let data = {}
