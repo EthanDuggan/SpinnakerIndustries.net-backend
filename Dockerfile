@@ -7,6 +7,10 @@ WORKDIR /app
 # Copy any npm package files into our working directory
 COPY package*.json ./
 
+#Install nfs-utils and then mount the nfs share on Horton for access to things like 'Horton/reference/Eng Product Log.xls'
+RUN ["mkdir", "/horton"]
+RUN ["mount", "-o", "nolock", "192.168.1.9:/home/opt", "/horton"]
+
 # Run 'npm install' on our docker image to install the packages listed in the npm package files
 RUN ["npm", "install"]
 
