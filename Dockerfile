@@ -14,8 +14,8 @@ RUN ["npm", "install"]
 COPY . .
 
 # Set the environment variable 'PORT' to 8080, and expose 8080.  This will make our app available over port 8080 of our docker container.
-ENV PORT=8080
-EXPOSE 8080
+ENV PORT=8081
+EXPOSE 8081
 
 # Start our node app
 CMD ["npm", "start"]
