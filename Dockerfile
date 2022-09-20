@@ -9,7 +9,7 @@ COPY package*.json ./
 
 #Install nfs-utils and then mount the nfs share on Horton for access to things like 'Horton/reference/Eng Product Log.xls'
 RUN ["mkdir", "/horton"]
-RUN ["mount", "-o", "nolock", "192.168.1.9:/home/opt", "/horton"]
+RUN echo "@reboot root mount -o nolock 192.168.1.9:/home/opt /horton" >> /etc/crontab
 
 # Run 'npm install' on our docker image to install the packages listed in the npm package files
 RUN ["npm", "install"]
@@ -23,3 +23,7 @@ EXPOSE 8081
 
 # Start our node app
 CMD ["npm", "start"]
+
+# --- NOTES ---
+
+# ALWAYS RUN ON THE HOST NETWORK, OTHERWISE THE HORTON NFS SHARES EXPOSED TO SPIN.NET WONT BE EXPOSED TO THE CONTAINER'S IP, CAUSING THE MOUNT TO FAIL
