@@ -9,6 +9,8 @@ COPY package*.json ./
 
 #Install nfs-utils and then mount the nfs share on Horton for access to things like 'Horton/reference/Eng Product Log.xls'
 RUN ["mkdir", "/horton"]
+RUN apt-get update
+RUN apt-get-install nfscommon -y
 RUN echo "@reboot root mount -o nolock 192.168.1.9:/home/opt /horton" >> /etc/crontab
 
 # Run 'npm install' on our docker image to install the packages listed in the npm package files
