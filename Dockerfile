@@ -11,7 +11,8 @@ COPY package*.json ./
 RUN ["mkdir", "/horton-reference"]
 RUN apt-get update
 RUN apt-get install cifs-utils -y
-RUN cp -f crontab /etc/crontab
+COPY crontab /etc/crontab
+#RUN cp -f crontab /etc/crontab
 
 # Run 'npm install' on our docker image to install the packages listed in the npm package files
 RUN ["npm", "install"]
