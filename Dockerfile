@@ -8,10 +8,10 @@ WORKDIR /app
 COPY package*.json ./
 
 #Install nfs-utils and then mount the nfs share on Horton for access to things like 'Horton/reference/Eng Product Log.xls'
-RUN ["mkdir", "/horton"]
+RUN ["mkdir", "/horton-reference"]
 RUN apt-get update
-RUN apt-get install nfs-common -y
-RUN echo "@reboot root mount -o nolock 192.168.1.9:/home/opt /horton" >> /etc/crontab
+RUN apt-get install cifs-utils -y
+RUN echo "@reboot root mount -t cifs -o vers=3.0,username=spin.net-backend,password=wK0QDuTj3F,uid=1005,gid=1005 \\\\192.168.1.9\\reference /horton-reference" >> /etc/crontab
 
 # Run 'npm install' on our docker image to install the packages listed in the npm package files
 RUN ["npm", "install"]
