@@ -11,6 +11,7 @@ COPY package*.json ./
 RUN ["mkdir", "/horton-reference"]
 RUN apt-get update
 RUN apt-get install cifs-utils -y
+RUN apt-get install cron -y
 COPY crontab /etc/crontab
 #RUN cp -f crontab /etc/crontab
 
