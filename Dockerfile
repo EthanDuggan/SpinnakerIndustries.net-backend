@@ -11,8 +11,8 @@ COPY package*.json ./
 RUN ["mkdir", "/horton-reference"]
 RUN apt-get update
 RUN apt-get install cifs-utils -y
-RUN apt-get install cron -y
-COPY crontab /etc/crontab
+#RUN apt-get install cron -y
+#COPY crontab /etc/crontab
 #RUN cp -f crontab /etc/crontab
 
 # Run 'npm install' on our docker image to install the packages listed in the npm package files
@@ -26,7 +26,10 @@ ENV PORT=8081
 EXPOSE 8081
 
 # Start our node app
-CMD ["npm", "start"]
+#CMD ["npm", "start"]
+ADD start.sh /
+RUN chmod +x /start.sh
+CMD ["/start.sh"]
 
 # --- NOTES ---
 
