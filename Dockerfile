@@ -11,9 +11,6 @@ COPY package*.json ./
 RUN ["mkdir", "/horton-reference"]
 RUN apt-get update
 RUN apt-get install cifs-utils -y
-#RUN apt-get install cron -y
-#COPY crontab /etc/crontab
-#RUN cp -f crontab /etc/crontab
 
 # Run 'npm install' on our docker image to install the packages listed in the npm package files
 RUN ["npm", "install"]
@@ -26,7 +23,6 @@ ENV PORT=8081
 EXPOSE 8081
 
 # Start our node app
-#CMD ["npm", "start"]
 ADD start.sh /
 RUN chmod +x /start.sh
 CMD ["/start.sh"]
@@ -34,3 +30,6 @@ CMD ["/start.sh"]
 # --- NOTES ---
 
 # ALWAYS RUN ON THE HOST NETWORK, OTHERWISE THE HORTON NFS SHARES EXPOSED TO SPIN.NET WONT BE EXPOSED TO THE CONTAINER'S IP, CAUSING THE MOUNT TO FAIL
+
+#ALWAYS RUN WITH "--cap-add SYS_ADMIN --cap-add DAC_READ_SEARCH" otherwise the cifs/smb shares on horton can't be mounted (not sure why exactly, but I'm pretty sure its some kind of security setting, check out https://github.com/moby/moby/issues/22197 for more info)
+

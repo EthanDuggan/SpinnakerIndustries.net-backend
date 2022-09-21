@@ -9,7 +9,7 @@ const EngProductLogPATH = '/horton-reference/Eng Product Log.xls';
 
 let EngProductLogData;
 let EngProductLogLastModifiedTime;
-//loadEngProductLogData();
+loadEngProductLogData();
 
 //console.log(appData.installationInstructions); // testing purposes
 
