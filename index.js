@@ -4,7 +4,7 @@ const XLSX = require('xlsx');
 const fs = require('fs');
 
 const PORT = 8081;
-const frontEndServerOrigin = 'http://spin.net:80';
+const frontEndServerOrigin = 'http://spin.net';
 const EngProductLogPATH = '/horton-reference/Eng\ Product\ Log.xls';
 
 let EngProductLogData;
