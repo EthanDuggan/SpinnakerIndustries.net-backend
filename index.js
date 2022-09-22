@@ -5,7 +5,7 @@ const fs = require('fs');
 
 const PORT = 8081;
 const frontEndServerOrigin = 'http://spin.net:80';
-const EngProductLogPATH = '/horton-reference/Eng Product Log.xls';
+const EngProductLogPATH = '/horton-reference/Eng\ Product\ Log.xls';
 
 let EngProductLogData;
 let EngProductLogLastModifiedTime;
