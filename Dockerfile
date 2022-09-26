@@ -8,7 +8,10 @@ WORKDIR /app
 COPY package*.json ./
 
 #Install cifs-utils and then mount the smb share on Horton for access to things like 'Horton/reference/Eng Product Log.xls'
-RUN ["mkdir", "/horton-reference"]
+RUN ["mkdir", "/horton"]
+RUN ["mkdir", "/horton/reference"]
+RUN ["mkdir", "/horton/wiring"]
+RUN ["mkdir", "/horton/instructions"]
 RUN apt-get update
 RUN apt-get install cifs-utils -y
 

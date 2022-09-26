@@ -5,7 +5,7 @@ const fs = require('fs');
 
 const PORT = 8081;
 const frontEndServerOrigin = 'http://spin.net:80';
-const EngProductLogPATH = '/horton-reference/Eng\ Product\ Log.xls';
+const EngProductLogPATH = '/horton/reference/Eng\ Product\ Log.xls';
 
 let EngProductLogData;
 let EngProductLogLastModifiedTime;
@@ -22,6 +22,9 @@ app.use(express.json()); // parses all incoming HTTP request bodies into JSON ob
 // routes
 app.get('/WiringDiagrams', (req, res) => {res.status(200).send(EngProductLogData.wiringDiagrams);});
 app.get('/InstallationInstructions', (req, res) => {res.status(200).send(EngProductLogData.installationInstructions);});
+
+app.get('/WiringDiagrams/:file', (req, res) => {res.status(200).sendFile(`/horton/wiring/${req.params.file}`)});
+app.get('/InstallationInstructions/:file', (req, res) => {res.status(200).sendFile(`/horton/instructions/PDF/${req.params.file}`)});
 
 app.listen(PORT, () => console.log(`app available at port ${PORT}`));
 
