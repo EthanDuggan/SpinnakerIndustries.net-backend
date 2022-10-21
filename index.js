@@ -4,18 +4,14 @@ const XLSX = require('xlsx');
 const fs = require('fs');
 
 const PORT = 8081;
-const frontEndServerOrigin = 'http://spin.net:80';
 const EngProductLogPATH = '/horton/reference/Eng\ Product\ Log.xls';
 
 let EngProductLogData;
 let EngProductLogLastModifiedTime;
 loadEngProductLogData();
 
-//console.log(appData.installationInstructions); // testing purposes
-
 // create server for serving the api
 const app = express();
-//app.use(cors({origin: frontEndServerOrigin})); // adds a Cross-origin Resource Sharing (CORS) policy middleware that allows the spinnakerindustries.net front-end to make http requests to this server
 app.use(cors({origin: '*'})); //this effectively disables the cors policy
 app.use(express.json()); // parses all incoming HTTP request bodies into JSON objects (by default they are just treated as strings)
 
